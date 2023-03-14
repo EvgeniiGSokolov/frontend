@@ -22,9 +22,10 @@ export class ConfigComponent {
 
   showConfig() {
     this.configService.getConfig()
-      // clone the data object, using its known Config shape
-      .subscribe((data: Config) => this.config = { ...data });
-    console.log(this.config?.date);
+      .subscribe({
+        next: (data: Config) => this.config = { ...data }, // success path
+        error: error => this.error = error, // error path
+      });
   }
 
   getType(val: any): string {
