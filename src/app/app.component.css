@@ -1,0 +1,46 @@
+/* Application-wide Styles */
+h1 {
+    color: rgb(44, 62, 80);
+    font-family: 'Times New Roman', Times, serif;
+    font-style: initial;
+    font-size: 250%;
+  }
+  h2, h3 {
+    color: #521d1d;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: lighter;
+  }
+  body {
+    margin: 2em;
+  }
+  body, input[type="text"], button {
+    color: #333;
+    font-family: Cambria, Georgia, serif;
+  }
+  button {
+    background-color: #eee;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  button:hover {
+    background-color: black;
+    color: white;
+  }
+  button:disabled {
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+  }
+  
+  /* everywhere else */
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+  }
