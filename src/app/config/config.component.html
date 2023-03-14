@@ -2,11 +2,10 @@
 <div>
   <button type="button" (click)="clear(); showConfig()">get</button>
 
-  <span *ngIf="config">
-    <p>Heroes API URL is "{{config!.heroesUrl}}"</p>
-    <p>Textfile URL is "{{config!.textfile}}"</p>
-    <p>Date is "{{config!.date}}</p>
-  </span>
+
+    <p>Heroes API URL is "{{config?.heroesUrl}}"</p>
+    <p>Textfile URL is "{{config?.textfile}}"</p>
+    <p>Date is "{{config?.date}}"</p>
 </div>
 
 

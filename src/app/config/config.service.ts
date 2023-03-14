@@ -6,19 +6,19 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 export interface Config {
-  heroesUrl: string;
-  textfile: string;
-  date: string;
+  "heroesUrl": string;
+  "textfile": string;
+  "date": string;
 }
 
 @Injectable()
 export class ConfigService {
-  configUrl = 'assets/config.json';
+  configUrl = './assets/config.json';
 
   constructor(private http: HttpClient) { }
 
   getConfig() {
-    return this.http.get<Config>(this.configUrl)
+    return this.http.get<Config>(this.configUrl, {responseType: 'json'})
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error
