@@ -13,6 +13,8 @@ import { CollocationSearchComponent } from './collocation-search/collocation-sea
 import { DownloadComponent } from './download/download.component';
 import { DatabaseComponent } from './database/database.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfigComponent } from './config/config.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     ConcordanceSearchComponent,
     CollocationSearchComponent,
     DownloadComponent,
-    DatabaseComponent
+    DatabaseComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,

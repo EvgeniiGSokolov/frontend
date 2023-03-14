@@ -2,10 +2,17 @@
 <div>
   <button type="button" (click)="clear(); showConfig()">get</button>
 
+  <pre>{{myData}}</pre>
+  <span *ngIf="myData">
+    <ul>
+      <li *ngFor="let item of myData">
+        <p>{{item.heroesUrl}}</p>
+        <p>{{item.textfile}}</p>
+        <p>{{item.date}}</p>
+      </li>
+    </ul>
+  </span>
 
-    <p>Heroes API URL is "{{config?.heroesUrl}}"</p>
-    <p>Textfile URL is "{{config?.textfile}}"</p>
-    <p>Date is "{{config?.date}}"</p>
 </div>
 
 
