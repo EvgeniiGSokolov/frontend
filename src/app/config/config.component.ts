@@ -24,6 +24,7 @@ export class ConfigComponent {
     this.configService.getConfig()
       // clone the data object, using its known Config shape
       .subscribe((data: Config) => this.config = { ...data });
+    console.log(this.config?.date);
   }
 
   getType(val: any): string {

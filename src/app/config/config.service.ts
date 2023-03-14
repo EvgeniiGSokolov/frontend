@@ -6,14 +6,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 export interface Config {
-  "heroesUrl": string;
-  "textfile": string;
-  "date": string;
+  "heroesUrl": string,
+  "textfile": string,
+  "date": string
 }
 
 @Injectable()
 export class ConfigService {
-  configUrl = './assets/config.json';
+  configUrl = 'http://127.0.0.1:5000/hiroi';
 
   constructor(private http: HttpClient) { }
 
