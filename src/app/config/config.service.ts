@@ -25,26 +25,6 @@ export class ConfigService {
       );
   }
 
-  getConfig_1() {
-    return this.http.get<Config>(this.configUrl);
-  }
-
-  getConfig_2() {
-    // now returns an Observable of Config
-    return this.http.get<Config>(this.configUrl);
-  }
-
-  getConfig_3() {
-    return this.http.get<Config>(this.configUrl)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  getConfigResponse(): Observable<HttpResponse<Config>> {
-    return this.http.get<Config>(
-      this.configUrl, { observe: 'response' });
-  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -58,13 +38,6 @@ export class ConfigService {
     }
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
-  }
-
-  makeIntentionalError() {
-    return this.http.get('not/a/real/url')
-      .pipe(
-        catchError(this.handleError)
-      );
   }
 
 }
