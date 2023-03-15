@@ -14,6 +14,8 @@ import { DownloadComponent } from './download/download.component';
 import { DatabaseComponent } from './database/database.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigComponent } from './config/config.component';
+import { CollocationsComponent } from './collocations/collocations.component';
+import { ConcordancerComponent } from './concordancer/concordancer.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { ConfigComponent } from './config/config.component';
     CollocationSearchComponent,
     DownloadComponent,
     DatabaseComponent,
-    ConfigComponent
+    ConfigComponent,
+    CollocationsComponent,
+    ConcordancerComponent
   ],
   imports: [
     BrowserModule,

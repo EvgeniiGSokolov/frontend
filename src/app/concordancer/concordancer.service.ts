@@ -7,13 +7,13 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 @Injectable()
-export class ConfigService {
-  configUrl = 'http://127.0.0.1:5000/hiroi';
+export class ConcordancerService {
+  concordancerUrl = 'http://127.0.0.1:5000/make_concordance';
 
   constructor(private http: HttpClient) { }
 
-  getConfig() {
-    return this.http.get<[]>(this.configUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
+  getConcordance() {
+    return this.http.get<[]>(this.concordancerUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error

@@ -7,13 +7,13 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 @Injectable()
-export class ConfigService {
-  configUrl = 'http://127.0.0.1:5000/hiroi';
+export class CollocationsService {
+  collocationsUrl = 'http://127.0.0.1:5000/find_collocations';
 
   constructor(private http: HttpClient) { }
 
-  getConfig() {
-    return this.http.get<[]>(this.configUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
+  getCollocations() {
+    return this.http.get<[]>(this.collocationsUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error

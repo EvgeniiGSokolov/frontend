@@ -10,6 +10,8 @@ import { ConcordanceSearchComponent } from './concordance-search/concordance-sea
 import { DatabaseComponent } from './database/database.component';
 import { DownloadComponent } from './download/download.component';
 import { ConfigComponent } from './config/config.component';
+import { CollocationsComponent } from './collocations/collocations.component';
+import { ConcordancerComponent } from './concordancer/concordancer.component';
 
 const routes: Routes = [
   {path: 'menu', component: MenuComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'collocation_search', component: CollocationSearchComponent},
   {path: 'download', component: DownloadComponent},
   {path: 'database', component: DatabaseComponent},
-  {path: 'config', component: ConfigComponent}
+  {path: 'config', component: ConfigComponent},
+  {path: 'collocations', component: CollocationsComponent},
+  {path: 'concordancer', component: ConcordancerComponent}
 ];
 
 @NgModule({
