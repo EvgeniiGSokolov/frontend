@@ -1,16 +1,29 @@
-  <h3>Get configuration from JSON file</h3>
-<div>
+  <h3>СОСТАВЛЕНИЕ КОНКОРДАНСА</h3>
+
+  <div>
+    <p>Верхняя граница отрезка: <input [(ngModel)] = "word_1"></p>
+    <p>Нижняя граница отрезка: <input [(ngModel)] = "word_2"></p>
+    Как тут разобраться с формами и радиокнопками?
+        <div *ngIf="word_2">
+          <li>Я здох</li>
+        </div>
+  </div>
+
+  <div>
   <button type="button" (click)="clear(); showCollocations()">get</button>
 
   <span *ngIf="myData">
     <ul>
       <li *ngFor="let entry of myData">
-        <h4>{{entry.header}}</h4>
-        <p><b>число вхождений: {{entry.number}},</b></p>
-        <h5>Примеры:</h5>
-        <ul>
-          <li *ngFor="let elt of entry.contents">{{elt}}</li>
-        </ul>
+        <input type=checkbox (click)="reactButton()">{{entry.header}}
+        <div *ngIf="checked">
+          <p>число вхождений: {{entry.number}},</p>
+          <h5>Примеры:</h5>
+          <ul>
+            <li *ngFor="let elt of entry.contents">{{elt}}</li>
+          </ul>
+        </div>
+
       </li>
     </ul>
   </span>
