@@ -18,6 +18,8 @@ import { ConfigComponent } from './config/config.component';
 import { CollocationsComponent } from './collocations/collocations.component';
 import { ConcordancerComponent } from './concordancer/concordancer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
