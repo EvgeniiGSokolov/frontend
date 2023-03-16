@@ -107,17 +107,17 @@
     <div *ngIf="POS == 'PR'">в</div>
         </div>
   
-  <button (click)="toSend(word_1, word_2, [POS,NUM,CASE,SADD,VTRANS,VTENSE,VPERS,GEN])">ВЫБРОСИТЬ ПРИЗНАКИ!</button>
-  {{upper}} {{lower}} {{attributes}}
+  <button (click)="toSend(word_1, word_2, [POS,NUM,CASE,SADD,VTRANS,VTENSE,VPERS,GEN]);
+  submit(upper,lower,attributes)">СТАТЬ ПИКАЧУ</button>
   <div>
   <button type="button" (click)="clear(); showConcordance()">get</button>
 
-  <span *ngIf="myData">
+  <span *ngIf="postData">
     <div class="split left">
       
     </div>
     <ul>
-      <li *ngFor="let entry of myData">
+      <li *ngFor="let entry of postData">
         <button (click)="reactButton(entry)">{{entry.header}}</button>
         <div *ngIf="this.contents == entry.contents">
           <p>число вхождений: {{this.number}},</p>

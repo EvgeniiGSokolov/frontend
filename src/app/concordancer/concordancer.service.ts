@@ -10,6 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class ConcordancerService {
   concordancerUrl = 'http://127.0.0.1:5000/make_concordance';
 
+
   constructor(private http: HttpClient) { }
 
   getConcordance() {
@@ -18,6 +19,14 @@ export class ConcordancerService {
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error
       );
+  }
+
+  postData(upper: string, lower: string, graminfo: any) {
+    const body = {"upper": upper, "lower": lower, "graminfo": graminfo};
+    console.log(body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/make_concordance', body);
+    console.log(r);
+    return r;
   }
 
 

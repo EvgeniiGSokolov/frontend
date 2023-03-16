@@ -28,6 +28,7 @@ export class ConcordancerComponent {
   error: any;
   headers: string[] = [];
   myData: any[] = [];
+  postData: any;
   number: any;
   contents!: [];
   postags: {"short": string, "russ": string}[] = [
@@ -86,8 +87,8 @@ export class ConcordancerComponent {
     {"short": "имя", "russ": "антропоним"},
     {"short": "отч", "russ": "отчество"},
     {"short": "устар", "russ": "архаизм"}
-  ]
-   
+  ];
+  
 
 
   constructor(private concordancerService: ConcordancerService) {}
@@ -120,8 +121,8 @@ export class ConcordancerComponent {
     this.GEN = 'all';
   }
 
-  showConcordance() {
-    this.concordancerService.getConcordance()
+  showConcordance() { //Оказывается, при методе POST backend возвращает обратно данные, и отдельный get не нужен! 
+    this.concordancerService.getConcordance() //Поэтому оставлю только submit.
       .subscribe( //подпишемся на getConfig, чтобы получить из него наш массив
         res => {
           this.myData = res; // массив собственной персоной;
@@ -132,14 +133,20 @@ export class ConcordancerComponent {
   reactButton(s: any) {
     this.number = s.number;
     this.contents = s.contents;
-    //return this.truth;
-    //console.log(this.truth);
   }
 
   toSend(w1: string, w2: string, arr: string[] = []) {
     this.upper = w1;
     this.lower = w2;
     this.attributes = arr.filter((obj) => {return obj != 'all'})
+  }
+
+  submit(upper: string, lower: string, graminfo: any) {
+    let p = this.concordancerService.postData(upper, lower, graminfo);
+    console.log(p);
+    p.subscribe(res => {this.postData = res;
+      console.log(res)});
+
   }
 
   getType(val: any): string {
