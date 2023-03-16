@@ -7,83 +7,100 @@
         <mat-radio-button *ngFor="let postag of postags" [value]="postag.russ">
         {{postag.russ}}
       </mat-radio-button>
-
     </mat-radio-group>
     <div *ngIf="POS == 'существительное'">
-    <mat-radio-group>число:<br>
-      <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>
-    </mat-radio-group>
-    <br>
-    <mat-radio-group>падеж:<br>
+    <mat-radio-group [(ngModel)]="SNUM">
+    число:<br>
+      <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>      
+    </mat-radio-group><br>
+    <mat-radio-group [(ngModel)]="SCASE">
+    падеж:<br>
       <mat-radio-button *ngFor="let case of cases" [value]="case.russ">{{case.russ}}</mat-radio-button>
     </mat-radio-group><br>
-    <mat-radio-group>дополнительные параметры:<br>
+    <mat-radio-group [(ngModel)]="SADD">
+    дополнительные параметры:<br>
       <mat-radio-button *ngFor="let add of addition" [value]="add.russ">{{add.russ}}</mat-radio-button>
     </mat-radio-group>
   </div>
 
     <div *ngIf="POS == 'глагол'">
-    <mat-radio-group>переходность:<br>
+    <mat-radio-group [(ngModel)]="VTRANS">
+    переходность:<br>
       <mat-radio-button *ngFor="let transition of transitions" [value]="transition.russ">{{transition.russ}}</mat-radio-button>
+    </mat-radio-group>    <br>
+    <mat-radio-group [(ngModel)]="VTENSE">
+    время:<br>
+      <mat-radio-button *ngFor="let tense of tenses" [value]="tense.russ">{{tense.russ}}</mat-radio-button>      
+    </mat-radio-group>   
+    <br>
+    <mat-radio-group [(ngModel)]="VPERS">
+    лицо:<br>
+      <mat-radio-button *ngFor="let person of persons" [value]="person.russ">{{person.russ}}</mat-radio-button>      
     </mat-radio-group>
     <br>
-    <mat-radio-group>время:<br>
-      <mat-radio-button *ngFor="let tense of tenses" [value]="tense.russ">{{tense.russ}}</mat-radio-button>
-    </mat-radio-group>
-    <br>
-    <mat-radio-group>лицо:<br>
-      <mat-radio-button *ngFor="let person of persons" [value]="person.russ">{{person.russ}}</mat-radio-button>
-    </mat-radio-group>
-    <br>
-    <mat-radio-group>число:<br>
-      <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>
-    </mat-radio-group>
+    <mat-radio-group [(ngModel)]="VNUM">
+    число:<br>
+      <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>      
+    </mat-radio-group>   
   </div>
 
     <div *ngIf="POS == 'прилагательное'">
-      <mat-radio-group>род:<br>
+      <mat-radio-group [(ngModel)]="AGEN">
+        род:<br>
         <mat-radio-button *ngFor="let gender of genders" [value]="gender.russ">{{gender.russ}}</mat-radio-button>
-      </mat-radio-group><br>
-      <mat-radio-group>число:<br>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="ANUM">
+        число:<br>
         <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
-      <mat-radio-group>падеж:<br>
-        <mat-radio-button *ngFor="let case of cases" [value]="case.russ">{{case.russ}}</mat-radio-button>
+      <mat-radio-group [(ngModel)]="ACASE">
+        падеж:<br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.russ">{{case.russ}}</mat-radio-button>        
       </mat-radio-group>
+
     </div>
 
     <div *ngIf="POS == 'наречие'"></div>
 
     <div *ngIf="POS == 'местоимение-существительное'">
-      <mat-radio-group>род:<br>
+      <mat-radio-group [(ngModel)]="SPROGEN">
+        род:<br>
         <mat-radio-button *ngFor="let gender of genders" [value]="gender.russ">{{gender.russ}}</mat-radio-button>
-      </mat-radio-group><br>
-      <mat-radio-group>число:<br>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="SPRONUM">
+        число:<br>
         <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
-      <mat-radio-group>падеж:<br>
+      <mat-radio-group [(ngModel)]="SPROCASE">
+        падеж:<br>
         <mat-radio-button *ngFor="let case of cases" [value]="case.russ">{{case.russ}}</mat-radio-button>
       </mat-radio-group>
     </div>
 
     <div *ngIf="POS == 'местоимение-прилагательное'">
-      <mat-radio-group>род:<br>
+      <mat-radio-group [(ngModel)]="APROGEN">
+        род:<br>
         <mat-radio-button *ngFor="let gender of genders" [value]="gender.russ">{{gender.russ}}</mat-radio-button>
-      </mat-radio-group><br>
-    <mat-radio-group>число:<br>
-      <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>
-    </mat-radio-group>
-    <br>
-    <mat-radio-group>падеж:<br>
-      <mat-radio-button *ngFor="let case of cases" [value]="case.russ">{{case.russ}}</mat-radio-button>
-    </mat-radio-group>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="APRONUM">
+        число:<br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.russ">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="APROCASE">
+        падеж:<br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.russ">{{case.russ}}</mat-radio-button>        
+      </mat-radio-group>
   </div>
     <div *ngIf="POS == 'местоименное наречие'">так</div>
     <div *ngIf="POS == 'предлог'">в</div>
         </div>
-
+  
   <div>
   <button type="button" (click)="clear(); showCollocations()">get</button>
 
