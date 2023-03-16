@@ -9,92 +9,99 @@ import { ConcordancerService } from './concordancer.service';
   styles: ['.error { color: #b30000; }']
 })
 export class ConcordancerComponent {
+  choice!: string;
   word_1!: string;
   word_2!: string;
   POS!: string;
-  SNUM!: string;
-  SCASE!: string;
+  NUM!: string;
+  CASE!: string;
   SADD!: string;
   VTRANS!: string;
   VTENSE!: string;
   VPERS!: string;
-  VNUM!: string;
-  AGEN!: string;
-  ANUM!: string;
-  ACASE!: string;
-  SPROGEN!: string;
-  SPRONUM!: string;
-  SPROCASE!: string;
-  APROGEN!: string;
-  APRONUM!: string;
-  APROCASE!: string;
+  GEN!: string;
+  
+  upper!: string;
+  lower!: string;
+  attributes: string[] = [];
   truth: any;
   error: any;
   headers: string[] = [];
   myData: any[] = [];
   number: any;
   contents!: [];
-  postags: {"pos": string, "russ": string}[] = [
-    {"pos": "all", "russ": "любая"},
-    {"pos": "S", "russ": "существительное"}, 
-    {"pos": "V", "russ": "глагол"},
-    {"pos": "A", "russ": "прилагательное"},
-    {"pos": "ADV", "russ": "наречие"},
-    {"pos": "SPRO", "russ": "местоимение-существительное"},
-    {"pos": "APRO", "russ": "местоимение-прилагательное"},
-    {"pos": "ADV", "russ": "наречие"},
-    {"pos": "PR", "russ":"предлог"}
+  postags: {"short": string, "russ": string}[] = [
+    {"short": "all", "russ": "любая"},
+    {"short": "S", "russ": "существительное"}, 
+    {"short": "V", "russ": "глагол"},
+    {"short": "A", "russ": "прилагательное"},
+    {"short": "ADV", "russ": "наречие"},
+    {"short": "SPRO", "russ": "местоимение-существительное"},
+    {"short": "APRO", "russ": "местоимение-прилагательное"},
+    {"short": "ADV", "russ": "наречие"},
+    {"short": "PR", "russ":"предлог"}
   ];
-  cases: {"case": string, "russ": string}[] = [
-    {"case":"им", "russ":"именительный"},
-    {"case":"род", "russ":"родительный"},
-    {"case":"дат", "russ":"дательный"},
-    {"case":"вин", "russ":"винительный"},
-    {"case":"твор", "russ":"творительный"},
-    {"case":"пр", "russ":"предложный"},
-    {"case":"парт", "russ":"родительный партитивный"},
-    {"case":"местн", "russ":"локативная форма"},
-    {"case":"зват", "russ":"звательная форма"},
+  cases: {"short": string, "russ": string}[] = [
+    {"short":"им", "russ":"именительный"},
+    {"short":"род", "russ":"родительный"},
+    {"short":"дат", "russ":"дательный"},
+    {"short":"вин", "russ":"винительный"},
+    {"short":"твор", "russ":"творительный"},
+    {"short":"пр", "russ":"предложный"},
+    {"short":"парт", "russ":"родительный партитивный"},
+    {"short":"местн", "russ":"локативная форма"},
+    {"short":"зват", "russ":"звательная форма"},
   ]
-  transitions: {"transition": string, "russ": string}[] = [
-    {"transition": "all", "russ": "любой"},
-    {"transition": "пе", "russ": "переходный"},
-    {"transition": "нп", "russ": "непереходный"},
+  transitions: {"short": string, "russ": string}[] = [
+    {"short": "all", "russ": "любой"},
+    {"short": "пе", "russ": "переходный"},
+    {"short": "нп", "russ": "непереходный"},
   ];
-  tenses: {"tense": string, "russ": string}[] = [
-    {"tense": "all", "russ": "любое"},
-    {"tense": "наст", "russ": "настоящее"},
-    {"tense": "непрош", "russ": "непрошедшее"},
-    {"tense": "прош", "russ": "прошедшее"}
+  tenses: {"short": string, "russ": string}[] = [
+    {"short": "all", "russ": "любое"},
+    {"short": "наст", "russ": "настоящее"},
+    {"short": "непрош", "russ": "непрошедшее"},
+    {"short": "прош", "russ": "прошедшее"}
   ];
-  persons: {"person": string, "russ": string}[] = [
-    {"person": "all", "russ": "любое"},
-    {"person": "1-л", "russ": "первое"},
-    {"person": "2-л", "russ": "второе"},
-    {"person": "3-л", "russ": "третье"}
+  persons: {"short": string, "russ": string}[] = [
+    {"short": "all", "russ": "любое"},
+    {"short": "1-л", "russ": "первое"},
+    {"short": "2-л", "russ": "второе"},
+    {"short": "3-л", "russ": "третье"}
   ];
-  nums: {"number": string, "russ": string}[] = [
-    {"number": "all", "russ": "любое"},
-    {"number": "ед", "russ": "единственное"},
-    {"number": "мн", "russ": "множественное"},
+  nums: {"short": string, "russ": string}[] = [
+    {"short": "all", "russ": "любое"},
+    {"short": "ед", "russ": "единственное"},
+    {"short": "мн", "russ": "множественное"},
   ];
-  genders: {"gender": string, "russ": string}[] = [
-    {"gender":"all", "russ": "любой"},
-    {"gender":"муж", "russ": "мужской"},
-    {"gender":"жен", "russ": "женский"},
-    {"gender":"сред", "russ": "средний"}
+  genders: {"short": string, "russ": string}[] = [
+    {"short":"all", "russ": "любой"},
+    {"short":"муж", "russ": "мужской"},
+    {"short":"жен", "russ": "женский"},
+    {"short":"сред", "russ": "средний"}
   ];
-  addition: {"add": string, "russ": string}[] = [
-    {"add": "all", "russ": "нет"},
-    {"add": "гео", "russ": "топоним"},
-    {"add": "имя", "russ": "антропоним"},
-    {"add": "отч", "russ": "отчество"},
-    {"add": "устар", "russ": "архаизм"}
+  addition: {"short": string, "russ": string}[] = [
+    {"short": "all", "russ": "нет"},
+    {"short": "гео", "russ": "топоним"},
+    {"short": "имя", "russ": "антропоним"},
+    {"short": "отч", "russ": "отчество"},
+    {"short": "устар", "russ": "архаизм"}
   ]
    
 
 
   constructor(private concordancerService: ConcordancerService) {}
+
+  fullConcord() {
+    this.word_1 = 'aaa';
+    this.word_2 = 'яяя';
+
+  }
+
+  clearConcord() {
+    this.word_1 = '';
+    this.word_2 = '';
+  }
 
   clear() {
     this.myData = [];
@@ -103,7 +110,17 @@ export class ConcordancerComponent {
     this.truth = undefined;
   }
 
-  showCollocations() {
+  clearPOS() {
+    this.NUM = 'all';
+    this.CASE = 'all';
+    this.SADD = 'all';
+    this.VTRANS = 'all';
+    this.VTENSE = 'all';
+    this.VPERS = 'all';
+    this.GEN = 'all';
+  }
+
+  showConcordance() {
     this.concordancerService.getConcordance()
       .subscribe( //подпишемся на getConfig, чтобы получить из него наш массив
         res => {
@@ -117,6 +134,12 @@ export class ConcordancerComponent {
     this.contents = s.contents;
     //return this.truth;
     //console.log(this.truth);
+  }
+
+  toSend(w1: string, w2: string, arr: string[] = []) {
+    this.upper = w1;
+    this.lower = w2;
+    this.attributes = arr.filter((obj) => {return obj != 'all'})
   }
 
   getType(val: any): string {
