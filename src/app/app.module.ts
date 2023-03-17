@@ -9,8 +9,6 @@ import { ConcordanceComponent } from './concordance/concordance.component';
 import { SyntaxComponent } from './syntax/syntax.component';
 import { SemanticsComponent } from './semantics/semantics.component';
 import { FileServicesComponent } from './file-services/file-services.component';
-import { ConcordanceSearchComponent } from './concordance-search/concordance-search.component';
-import { CollocationSearchComponent } from './collocation-search/collocation-search.component';
 import { DownloadComponent } from './download/download.component';
 import { DatabaseComponent } from './database/database.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +17,8 @@ import { CollocationsComponent } from './collocations/collocations.component';
 import { ConcordancerComponent } from './concordancer/concordancer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -30,8 +30,6 @@ import {MatRadioModule} from '@angular/material/radio';
     SyntaxComponent,
     SemanticsComponent,
     FileServicesComponent,
-    ConcordanceSearchComponent,
-    CollocationSearchComponent,
     DownloadComponent,
     DatabaseComponent,
     ConfigComponent,
@@ -44,7 +42,9 @@ import {MatRadioModule} from '@angular/material/radio';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatToolbarModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

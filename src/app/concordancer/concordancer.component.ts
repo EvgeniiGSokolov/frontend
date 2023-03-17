@@ -4,7 +4,7 @@ import { ConcordancerService } from './concordancer.service';
 @Component({
   selector: 'app-config',
   templateUrl: './concordancer.component.html',
-  //styleUrls: ['./concordancer.component.css'],
+  styleUrls: ['./concordancer.component.css'],
   providers: [ ConcordancerService ],
   styles: ['.error { color: #b30000; }']
 })
@@ -89,8 +89,6 @@ export class ConcordancerComponent {
     {"short": "устар", "russ": "архаизм"}
   ];
   
-
-
   constructor(private concordancerService: ConcordancerService) {}
 
   fullConcord() {
@@ -119,15 +117,6 @@ export class ConcordancerComponent {
     this.VTENSE = 'all';
     this.VPERS = 'all';
     this.GEN = 'all';
-  }
-
-  showConcordance() { //Оказывается, при методе POST backend возвращает обратно данные, и отдельный get не нужен! 
-    this.concordancerService.getConcordance() //Поэтому оставлю только submit.
-      .subscribe( //подпишемся на getConfig, чтобы получить из него наш массив
-        res => {
-          this.myData = res; // массив собственной персоной;
-          console.log(res);  // на всякий случай выводим его в консоль;
-       });
   }
 
   reactButton(s: any) {

@@ -13,13 +13,13 @@ export class ConcordancerService {
 
   constructor(private http: HttpClient) { }
 
-  getConcordance() {
-    return this.http.get<[]>(this.concordancerUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
-      .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
-      );
-  }
+  //getConcordance() {
+  //  return this.http.get<[]>(this.concordancerUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
+  //    .pipe(
+  //      retry(3), // retry a failed request up to 3 times
+  //      catchError(this.handleError) // then handle the error
+  //    );
+  //}
 
   postData(upper: string, lower: string, graminfo: any) {
     const body = {"upper": upper, "lower": lower, "graminfo": graminfo};

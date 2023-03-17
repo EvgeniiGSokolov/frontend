@@ -20,6 +20,13 @@ export class CollocationsService {
       );
   }
 
+  postData(fst: string, snd: string, dst: string, grinf_1: any, grinf_2: any) {
+    const body = {"first": fst, "second": snd, "distance": dst, "gram_1": grinf_1, "gram_2": grinf_2};
+    console.log(body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/find_collocations', body);
+    console.log(r);
+    return r;
+  }  
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

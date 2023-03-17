@@ -1,68 +1,73 @@
 <h3>СОСТАВЛЕНИЕ КОНКОРДАНСА</h3>
-<mat-radio-group [(ngModel)]="choice">
-  <mat-radio-button [value]="'full'" (click)="fullConcord()">полный конкорданс</mat-radio-button>
-  <mat-radio-button [value]="'partial'" (click)="clearConcord()">частичный конкорданс</mat-radio-button>
-</mat-radio-group>
+<mat-toolbar>
+<mat-radio-group [(ngModel)]="choice">Тип конкорданса:<br>
+  <mat-radio-button [value]="'full'" (click)="fullConcord()"><b>ПОЛНЫЙ</b></mat-radio-button>
+  <mat-radio-button [value]="'partial'" (click)="clearConcord()"><b>ЧАСТИЧНЫЙ</b></mat-radio-button>
+</mat-radio-group>  
+</mat-toolbar>
+
 
   <div>
     <div *ngIf="choice == 'partial'">
     <p>Верхняя граница отрезка: <input [(ngModel)] = "word_1"></p>
     <p>Нижняя граница отрезка: <input [(ngModel)] = "word_2"></p>      
     </div>
-    <mat-radio-group [(ngModel)]="POS">Часть речи:<br>
+    <mat-radio-group [(ngModel)]="POS"><b>Часть речи:</b><br>
         <mat-radio-button *ngFor="let postag of postags" [value]="postag.short" (click)="clearPOS()">
         {{postag.russ}}
       </mat-radio-button>
-    </mat-radio-group>
+    </mat-radio-group>      
+    
+    
     <div *ngIf="POS == 'S'">
     <mat-radio-group [(ngModel)]="NUM">
-    число:<br>
+    <b>число</b>:<br>
       <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>      
     </mat-radio-group><br>
     <mat-radio-group [(ngModel)]="CASE">
-    падеж:<br>
+    <b>падеж</b>:<br>
       <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>
     </mat-radio-group><br>
     <mat-radio-group [(ngModel)]="SADD">
-    дополнительные параметры:<br>
+    <b>дополнительные параметры</b>:<br>
       <mat-radio-button *ngFor="let add of addition" [value]="add.short">{{add.russ}}</mat-radio-button>
     </mat-radio-group>
   </div>
 
     <div *ngIf="POS == 'V'">
     <mat-radio-group [(ngModel)]="VTRANS">
-    переходность:<br>
+    <b>переходность:</b><br>
       <mat-radio-button *ngFor="let transition of transitions" [value]="transition.short">{{transition.russ}}</mat-radio-button>
     </mat-radio-group>    <br>
     <mat-radio-group [(ngModel)]="VTENSE">
-    время:<br>
+    <b>время:</b><br>
       <mat-radio-button *ngFor="let tense of tenses" [value]="tense.short">{{tense.russ}}</mat-radio-button>      
     </mat-radio-group>   
     <br>
     <mat-radio-group [(ngModel)]="VPERS">
-    лицо:<br>
+    <b>лицо</b>:<br>
       <mat-radio-button *ngFor="let person of persons" [value]="person.short">{{person.russ}}</mat-radio-button>      
     </mat-radio-group>
     <br>
     <mat-radio-group [(ngModel)]="NUM">
-    число:<br>
+    <b>число</b>:<br>
       <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>      
     </mat-radio-group>   
   </div>
 
     <div *ngIf="POS == 'A'">
       <mat-radio-group [(ngModel)]="GEN">
-        род:<br>
+        <b>род:</b><br>
         <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
       <mat-radio-group [(ngModel)]="NUM">
-        число:<br>
+        <b>число:</b><br>
         <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
       <mat-radio-group [(ngModel)]="CASE">
-        падеж:<br>
+        <b>падеж:</b><br>
         <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>        
       </mat-radio-group>
 
@@ -72,46 +77,45 @@
 
     <div *ngIf="POS == 'SPRO'">
       <mat-radio-group [(ngModel)]="GEN">
-        род:<br>
+        <b>род:</b><br>
         <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
       <mat-radio-group [(ngModel)]="NUM">
-        число:<br>
+        <b>число:</b><br>
         <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
       <mat-radio-group [(ngModel)]="CASE">
-        падеж:<br>
+        <b>падеж:</b><br>
         <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>
       </mat-radio-group>
     </div>
 
     <div *ngIf="POS == 'APRO'">
       <mat-radio-group [(ngModel)]="GEN">
-        род:<br>
+        <b>род:</b><br>
         <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
       <mat-radio-group [(ngModel)]="NUM">
-        число:<br>
+        <b>число:</b><br>
         <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
       </mat-radio-group>
       <br>
       <mat-radio-group [(ngModel)]="CASE">
-        падеж:<br>
+        <b>падеж:</b><br>
         <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>        
       </mat-radio-group>
   </div>
-    <div *ngIf="POS == 'ADVPRO'">так</div>
-    <div *ngIf="POS == 'PR'">в</div>
+    <div *ngIf="POS == 'ADVPRO'"></div>
+    <div *ngIf="POS == 'PR'"></div>
         </div>
   
-  <button (click)="toSend(word_1, word_2, [POS,NUM,CASE,SADD,VTRANS,VTENSE,VPERS,GEN]);
-  submit(upper,lower,attributes)">СТАТЬ ПИКАЧУ</button>
+  <button (click)="toSend(word_1, word_2, [POS,NUM,CASE,SADD,VTRANS,VTENSE,VPERS,GEN]);submit(upper,lower,attributes)">
+    СОСТАВИТЬ КОНКОРДАНС</button>
   <div>
-  <button type="button" (click)="clear(); showConcordance()">get</button>
-
+  <mat-divider></mat-divider>
   <span *ngIf="postData">
     <div class="split left">
       
@@ -120,14 +124,13 @@
       <li *ngFor="let entry of postData">
         <button (click)="reactButton(entry)">{{entry.header}}</button>
         <div *ngIf="this.contents == entry.contents">
-          <p>число вхождений: {{this.number}},</p>
-          <h5>Примеры:</h5>
+          <h4>число вхождений: {{this.number}},</h4>
+          <h4>Примеры:</h4>
           <ul>
             <li *ngFor="let elt of this.contents">{{elt}}</li>
           </ul>
           <br><br>
 
         </div>
-
 
 

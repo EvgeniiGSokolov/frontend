@@ -1,22 +1,248 @@
-  <h3>Get configuration from JSON file</h3>
+  <h3>Поиск коллокаций</h3>
 <div>
-  <button type="button" (click)="clear(); showCollocations()">get</button>
+  <mat-toolbar>
+  <p>Первое слово коллокации: <input [(ngModel)] = "word_1"></p>    
+</mat-toolbar>
 
-  <span *ngIf="myData">
+  <div>
+    <mat-radio-group [(ngModel)]="POS"><b>Часть речи:</b><br>
+        <mat-radio-button *ngFor="let postag of postags" [value]="postag.short" (click)="clearPOS()">
+        {{postag.russ}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <div *ngIf="POS == 'S'">
+    <mat-radio-group [(ngModel)]="NUM">
+    <b>число:</b><br>
+      <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>      
+    </mat-radio-group><br>
+    <mat-radio-group [(ngModel)]="CASE">
+    <b>падеж:</b><br>
+      <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>
+    </mat-radio-group><br>
+    <mat-radio-group [(ngModel)]="SADD">
+    <b>дополнительные параметры:</b><br>
+      <mat-radio-button *ngFor="let add of addition" [value]="add.short">{{add.russ}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+    <div *ngIf="POS == 'V'">
+    <mat-radio-group [(ngModel)]="VTRANS">
+    <b>переходность:</b><br>
+      <mat-radio-button *ngFor="let transition of transitions" [value]="transition.short">{{transition.russ}}</mat-radio-button>
+    </mat-radio-group>    <br>
+    <mat-radio-group [(ngModel)]="VTENSE">
+    <b>время:</b><br>
+      <mat-radio-button *ngFor="let tense of tenses" [value]="tense.short">{{tense.russ}}</mat-radio-button>      
+    </mat-radio-group>   
+    <br>
+    <mat-radio-group [(ngModel)]="VPERS">
+    <b>лицо:</b><br>
+      <mat-radio-button *ngFor="let person of persons" [value]="person.short">{{person.russ}}</mat-radio-button>      
+    </mat-radio-group>
+    <br>
+    <mat-radio-group [(ngModel)]="NUM">
+    <b>число:</b><br>
+      <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>      
+    </mat-radio-group>   
+  </div>
+
+    <div *ngIf="POS == 'A'">
+      <mat-radio-group [(ngModel)]="GEN">
+        <b>род:</b><br>
+        <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="NUM">
+        <b>число:</b><br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="CASE">
+        <b>падеж:</b><br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>        
+      </mat-radio-group>
+
+    </div>
+
+    <div *ngIf="POS == 'ADV'"></div>
+
+    <div *ngIf="POS == 'SPRO'">
+      <mat-radio-group [(ngModel)]="GEN">
+        <b>род:</b><br>
+        <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="NUM">
+        <b>число:</b><br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="CASE">
+        <b>падеж:</b><br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div *ngIf="POS == 'APRO'">
+      <mat-radio-group [(ngModel)]="GEN">
+        <b>род:</b><br>
+        <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="NUM">
+        <b>число:</b><br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="CASE">
+        <b>падеж:</b><br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>        
+      </mat-radio-group>
+  </div>
+    <div *ngIf="POS == 'ADVPRO'"></div>
+    <div *ngIf="POS == 'PR'"></div>
+        </div>
+
+<mat-toolbar>
+  <p>Второе слово коллокации: <input [(ngModel)] = "word_2"></p>
+</mat-toolbar>
+
+  <div>
+    <mat-radio-group [(ngModel)]="POS_2"><b>Часть речи:</b><br>
+        <mat-radio-button *ngFor="let postag of postags" [value]="postag.short" (click)="clearPOS()">
+        {{postag.russ}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <div *ngIf="POS_2 == 'S'">
+    <mat-radio-group [(ngModel)]="NUM_2">
+    <b>число:</b><br>
+      <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>      
+    </mat-radio-group><br>
+    <mat-radio-group [(ngModel)]="CASE_2">
+    <b>падеж:</b><br>
+      <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>
+    </mat-radio-group><br>
+    <mat-radio-group [(ngModel)]="SADD_2">
+    <b>дополнительные параметры:</b><br>
+      <mat-radio-button *ngFor="let add of addition" [value]="add.short">{{add.russ}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+    <div *ngIf="POS_2 == 'V'">
+    <mat-radio-group [(ngModel)]="VTRANS_2">
+    <b>переходность:</b><br>
+      <mat-radio-button *ngFor="let transition of transitions" [value]="transition.short">{{transition.russ}}</mat-radio-button>
+    </mat-radio-group>    <br>
+    <mat-radio-group [(ngModel)]="VTENSE_2">
+    <b>время:</b><br>
+      <mat-radio-button *ngFor="let tense of tenses" [value]="tense.short">{{tense.russ}}</mat-radio-button>      
+    </mat-radio-group>   
+    <br>
+    <mat-radio-group [(ngModel)]="VPERS_2">
+    <b>лицо:</b><br>
+      <mat-radio-button *ngFor="let person of persons" [value]="person.short">{{person.russ}}</mat-radio-button>      
+    </mat-radio-group>
+    <br>
+    <mat-radio-group [(ngModel)]="NUM_2">
+    <b>число:</b><br>
+      <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>      
+    </mat-radio-group>   
+  </div>
+
+    <div *ngIf="POS_2 == 'A'">
+      <mat-radio-group [(ngModel)]="GEN_2">
+        <b>род:</b><br>
+        <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="NUM_2">
+        <b>число:</b><br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="CASE_2">
+        <b>падеж:</b><br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>        
+      </mat-radio-group>
+
+    </div>
+
+    <div *ngIf="POS_2 == 'ADV'"></div>
+
+    <div *ngIf="POS_2 == 'SPRO'">
+      <mat-radio-group [(ngModel)]="GEN_2">
+        <b>род:</b><br>
+        <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="NUM_2">
+        <b>число:</b><br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="CASE_2">
+        <b>падеж:</b><br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div *ngIf="POS_2 == 'APRO'">
+      <mat-radio-group [(ngModel)]="GEN">
+        <b>род:</b><br>
+        <mat-radio-button *ngFor="let gender of genders" [value]="gender.short">{{gender.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="NUM_2">
+        <b>число:</b><br>
+        <mat-radio-button *ngFor="let num of nums" [value]="num.short">{{num.russ}}</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-radio-group [(ngModel)]="CASE_2">
+        <b>падеж:</b><br>
+        <mat-radio-button *ngFor="let case of cases" [value]="case.short">{{case.russ}}</mat-radio-button>        
+      </mat-radio-group>
+  </div>
+    <div *ngIf="POS_2 == 'ADVPRO'"></div>
+    <div *ngIf="POS_2 == 'PR'"></div>
+        </div>
+<mat-toolbar>
+  <p>Расстояние между словами: <input [(ngModel)] = "distance"></p>  
+</mat-toolbar>  
+
+  <button type="button" (click)="toSend(word_1, word_2, distance, [POS,NUM,CASE,SADD,VTRANS,VTENSE,VPERS,GEN],
+  [POS_2,NUM_2,CASE_2,SADD_2,VTRANS_2,VTENSE_2,VPERS_2,GEN_2]);
+   submitCollocations(left_word, right_word, dist_word, gram_1, gram_2)">ПОИСК</button>
+
+  <span *ngIf="postData">
     <ul>
-      <li *ngFor="let item of myData">
-        <p>Для слова <b>{{item.word_1}}</b> в форме <b>{{item.gram_1}}</b></p>
-        <p>и слова <b>{{item.word_2}}</b> в форме <b>{{item.gram_2}}</b>,</p>
-        <p>расположенных друг от друга на расстоянии <b>{{item.distance}},</b>:</p>
-        <p>найдены следующие примеры:</p>
+      <li *ngFor="let item of postData">
+        <div *ngIf="item.number != '0'">
+        <mat-toolbar>
+          <p>Для слова <b>{{item.word_1}}</b>
+            <i *ngIf="item.gram_1!=''"> в форме <b>{{item.gram_1}}</b></i>
+            и слова <b>{{item.word_2}}</b>
+            <i *ngIf="item.gram_2!=''"> в форме <b>{{item.gram_2}}</b></i>,&ensp;</p>
+            <p>расположенных друг от друга на расстоянии <b>{{item.distance}},&ensp;</b></p>
+            <p>найдены следующие примеры:</p>
+        </mat-toolbar>
+
         <ul>
           <li *ngFor="let elt of item.examples">{{elt}}</li>
         </ul>
+        </div>
+        <div *ngIf="item.number == '0'">
+          <mat-toolbar>
+          <p>Для слова <b>{{item.word_1}}</b> в форме <b>{{item.gram_1}}</b></p>
+          <p>и слова <b>{{item.word_2}}</b> в форме <b>{{item.gram_2}}</b>,</p>
+          <p>расположенных друг от друга на расстоянии <b>{{item.distance}},</b></p>
+          <p><b>примеров не найдено.</b></p>            
+          </mat-toolbar>
+        </div>
+
     </li>
     </ul>
   </span>
 
-</div>
 
 
 
