@@ -1,1 +1,24 @@
-<h2>Будет база данных!</h2>
+<h2>Выбрать или создать базу данных</h2>
+<mat-toolbar>
+    <mat-radio-group [(ngModel)]="choice">Действие над базой данных:<br>
+      <mat-radio-button [value]="'choose'"><b>ВЫБРАТЬ</b></mat-radio-button>
+      <mat-radio-button [value]="'create'"><b>СОЗДАТЬ</b></mat-radio-button>
+    </mat-radio-group>  
+    </mat-toolbar>
+<mat-toolbar>
+    <i>Выбрана база данных {{DBname}}</i>
+</mat-toolbar>
+<div *ngIf="choice == 'choose'">
+<button (click)="retrieveDB()">ВЫБРАТЬ БАЗУ ИЗ СПИСКА</button>
+<div *ngIf="DBnames">
+<ul>
+    <li *ngFor="let name of DBnames">
+        <button (click)="setDB(name); DBname = name;">Выбрать базу {{name}}</button>
+    </li>
+</ul>
+</div>
+</div>
+<div *ngIf="choice == 'create'">
+    <h4><b>НАЗВАНИЕ НОВОЙ БАЗЫ:&ensp;</b><input [(ngModel)]="db_name"></h4>
+    <button (click)="initializeDB(db_name);DBname = [db_name]">СОЗДАТЬ БАЗУ</button>
+    </div>

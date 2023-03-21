@@ -12,13 +12,17 @@ import { FileServicesComponent } from './file-services/file-services.component';
 import { DownloadComponent } from './download/download.component';
 import { DatabaseComponent } from './database/database.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfigComponent } from './config/config.component';
 import { CollocationsComponent } from './collocations/collocations.component';
 import { ConcordancerComponent } from './concordancer/concordancer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
+import { VecmodelComponent } from './vecmodel/vecmodel.component';
+import { SimsearchComponent } from './simsearch/simsearch.component';
+import { HomonymaComponent } from './homonyma/homonyma.component';
+import { GroupComponent } from './group/group.component';
 
 
 
@@ -32,9 +36,12 @@ import {MatDividerModule} from '@angular/material/divider';
     FileServicesComponent,
     DownloadComponent,
     DatabaseComponent,
-    ConfigComponent,
     CollocationsComponent,
-    ConcordancerComponent
+    ConcordancerComponent,
+    VecmodelComponent,
+    SimsearchComponent,
+    HomonymaComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ import {MatDividerModule} from '@angular/material/divider';
     BrowserAnimationsModule,
     MatRadioModule,
     MatToolbarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

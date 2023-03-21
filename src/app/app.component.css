@@ -18,6 +18,13 @@ h1 {
     color: #333;
     font-family: Cambria, Georgia, serif;
   }
+
+  a {
+    font-family:'Times New Roman', Times, serif;
+    color:aliceblue;
+    text-decoration: none;
+  }
+
   button {
     background-color: #eee;
     border: none;

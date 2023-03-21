@@ -7,19 +7,31 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 @Injectable()
-export class ConfigService {
-  configUrl = 'http://127.0.0.1:5000/hiroi';
+export class DatabaseService {
+  databaseUrl = 'http://127.0.0.1:5000/create_database';
+
 
   constructor(private http: HttpClient) { }
 
-  getConfig() {
-    return this.http.get<[]>(this.configUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
-      .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
-      );
+  getDBs() {
+    return this.http.get<[]>('http://127.0.0.1:5000/choose_database', {responseType: 'json'});
   }
 
+  announceDB(db_name: string) {
+    const body = {"db_name": db_name};
+    console.log(body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/create_database', body);
+    console.log(r);
+    return r;
+  }
+
+  sendDB(db_name: string) {
+    const body = {"db_name": db_name};
+    console.log(body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/set_database', body);
+    console.log(r);
+    return r;
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

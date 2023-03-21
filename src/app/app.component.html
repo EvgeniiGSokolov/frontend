@@ -1,5 +1,16 @@
-<mat-toolbar color="primary"><h1>{{title}}</h1></mat-toolbar>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1><a href="./menu">{{title}}</a></h1>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <button mat-flat-button (click)="retrieveDB()">ВЫБРАТЬ БАЗУ ИЗ СПИСКА</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<b *ngIf="postData">{{postData.message}}</b>
+<div *ngIf="DBnames">
+<ul>
+    <li *ngFor="let name of DBnames">
+        <button (click)="setDB(name); DBname = name; DBnames = []">Выбрать базу {{name}}</button>
+    </li>
+</ul>
 <router-outlet></router-outlet>
-<nav>
-  <a href="./menu">В главное меню</a>
-</nav>

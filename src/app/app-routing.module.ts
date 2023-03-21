@@ -7,9 +7,12 @@ import { SemanticsComponent } from './semantics/semantics.component';
 import { FileServicesComponent } from './file-services/file-services.component';
 import { DatabaseComponent } from './database/database.component';
 import { DownloadComponent } from './download/download.component';
-import { ConfigComponent } from './config/config.component';
 import { CollocationsComponent } from './collocations/collocations.component';
 import { ConcordancerComponent } from './concordancer/concordancer.component';
+import { VecmodelComponent } from './vecmodel/vecmodel.component';
+import { SimsearchComponent } from './simsearch/simsearch.component';
+import { HomonymaComponent } from './homonyma/homonyma.component';
+import { GroupComponent } from './group/group.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -20,9 +23,12 @@ const routes: Routes = [
   {path: 'file_services', component: FileServicesComponent},
   {path: 'download', component: DownloadComponent},
   {path: 'database', component: DatabaseComponent},
-  {path: 'config', component: ConfigComponent},
   {path: 'collocations', component: CollocationsComponent},
-  {path: 'concordancer', component: ConcordancerComponent}
+  {path: 'concordancer', component: ConcordancerComponent},
+  {path: 'vecmodel', component: VecmodelComponent},
+  {path: 'simsearch', component: SimsearchComponent},
+  {path: 'homonyma', component: HomonymaComponent},
+  {path: 'group', component: GroupComponent}
 ];
 
 @NgModule({

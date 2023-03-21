@@ -1,0 +1,13 @@
+<mat-toolbar>
+<h2>Обучить векторную модель</h2><br>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<div>
+    <h4><b>НАЗВАНИЕ НОВОЙ МОДЕЛИ:&ensp;</b><input [(ngModel)]="Model_name"></h4>
+   
+     <button *ngIf="DBnames" (click)="initializeModel(Model_name);Modelname = [Model_name]">ОБУЧИТЬ МОДЕЛЬ</button>
+</div>
+<mat-divider></mat-divider>
+<b *ngIf="postData">Обучена модель {{postData.address}}</b><br>
+

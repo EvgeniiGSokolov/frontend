@@ -1,0 +1,58 @@
+<h2>Поиск семантически сходных слов</h2>
+<mat-toolbar>
+    <mat-toolbar-row>
+    <button mat-stroked-button (click)="retrieveModel()">ВЫБРАТЬ МОДЕЛЬ ИЗ СПИСКА</button>       
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+{{word}} {{POS}} {{Modelname}}        
+    </mat-toolbar-row>
+</mat-toolbar>
+<div *ngIf="Modelnames">
+    <ul>
+        <li *ngFor="let name of Modelnames">
+            <button (click)="setModel(name); Modelname = name; Modelnames = []">Выбрать модель {{name}}</button>
+        </li>
+    </ul>
+    </div>
+<div>
+    <div>
+    <p>Слово: <input [(ngModel)] = "word"></p>    
+    </div>
+    <mat-radio-group [(ngModel)]="POS"><b>Часть речи:</b><br>
+        <mat-radio-button *ngFor="let postag of postags" [value]="postag.short" (click)="clearPOS()">
+        {{postag.russ}}
+      </mat-radio-button>
+    </mat-radio-group><br>   
+    <mat-divider></mat-divider>
+    <mat-radio-group [(ngModel)]="STRICT"><b>Только слова той же части речи</b><br>
+        <mat-radio-button *ngFor="let variant of truthcond" [value]="variant.eng">
+            {{variant.rus}}
+        </mat-radio-button>
+    </mat-radio-group>   
+    <mat-divider></mat-divider>
+  
+  <button (click)="toSend(word, POS, STRICT);submit(lexeme,attribute, truth)">
+    Найти значения</button>
+  <div>
+
+<mat-divider></mat-divider>
+
+<div *ngIf="postData">
+    <div *ngIf="postData.header">
+            <b>Ближайшие когнаты для слова {{postData.header}}:</b><br>
+            <ul>
+        <li *ngFor="let entry of postData.body">
+            
+            <b>{{entry.word}}</b>, степень сходства <b>{{entry.similarity}}</b><br>
+        </li>
+    </ul>
+    </div>
+    <div *ngIf="postData.message">
+        <b>{{postData.message}}</b>
+    </div>
+    <div *ngIf="postData.errormessage">
+        <b>{{postData.errormessage}}</b>
+    </div>
+    
+
+</div>

@@ -7,24 +7,40 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 @Injectable()
-export class ConcordancerService {
-  concordancerUrl = 'http://127.0.0.1:5000/make_concordance';
+export class VecmodelService {
+  databaseUrl = 'http://127.0.0.1:5000/create_database';
 
 
   constructor(private http: HttpClient) { }
 
-  //getConcordance() {
-  //  return this.http.get<[]>(this.concordancerUrl, {responseType: 'json'}) //Поскольку получаю я массив, я и указываю в get [], массив
-  //    .pipe(
-  //      retry(3), // retry a failed request up to 3 times
-  //      catchError(this.handleError) // then handle the error
-  //    );
-  //}
+  getModels() {
+    return this.http.get<[]>('http://127.0.0.1:5000/get_models', {responseType: 'json'});
+  }
 
-  postData(upper: string, lower: string, graminfo: any) {
-    const body = {"upper": upper, "lower": lower, "graminfo": graminfo};
+  announceModel(Model_name: string) {
+    const body = {"Model_name": Model_name};
     console.log(body);
-    let r = this.http.post<{}>('http://127.0.0.1:5000/make_concordance', body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/gensim_model', body);
+    console.log(r);
+    return r;
+  }
+
+  sendModel(Model_name: string) {
+    const body = {"Model_name": Model_name};
+    console.log(body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/set_model', body);
+    console.log(r);
+    return r;
+  }
+
+  getDBs() {
+    return this.http.get<[]>('http://127.0.0.1:5000/choose_database', {responseType: 'json'});
+  }
+
+  sendDB(db_name: string) {
+    const body = {"db_name": db_name};
+    console.log(body);
+    let r = this.http.post<{}>('http://127.0.0.1:5000/set_database', body);
     console.log(r);
     return r;
   }

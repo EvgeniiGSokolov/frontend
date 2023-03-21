@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { DatabaseService } from './database.service';
+import { VecmodelService } from './vecmodel.service';
 
 @Component({
   selector: 'app-config',
-  templateUrl: './database.component.html',
-  styleUrls: ['./database.component.css'],
-  providers: [DatabaseService],
+  templateUrl: './vecmodel.component.html',
+  styleUrls: ['./vecmodel.component.css'],
+  providers: [VecmodelService],
   styles: ['.error { color: #b30000; }']
 })
-export class DatabaseComponent {
+export class VecmodelComponent {
   choice!: string;
-  db_name!: string;
-  db_tosend!: string;
+  Model_name!: string;
+  Model_tosend!: string;
   
   upper!: string;
   lower!: string;
@@ -20,13 +20,15 @@ export class DatabaseComponent {
   truth: any;
   error: any;
   headers: string[] = [];
+  Modelnames: any[] = [];
+  Modelname: any[] = [];
   DBnames: any[] = [];
   DBname: any[] = [];
   postData: any;
   number: any;
   contents!: [];
   
-  constructor(private databaseService: DatabaseService, private http: HttpClient) {}
+  constructor(private vecmodelService: VecmodelService, private http: HttpClient) {}
 
   reactButton(s: any) {
     this.number = s.number;
@@ -39,26 +41,40 @@ export class DatabaseComponent {
     this.attributes = arr.filter((obj) => {return obj != 'all'})
   }
 
-retrieveDB() {
-    let p = this.databaseService.getDBs();
+retrieveModel() {
+    let p = this.vecmodelService.getModels();
     console.log(p);
-    p.subscribe(res => {this.DBnames = res;
+    p.subscribe(res => {this.Modelnames = res;
       console.log(res)});
   }
 
-  initializeDB(db_name: string) {
-    let p = this.databaseService.announceDB(db_name);
+  initializeModel(Model_name: string) {
+    let p = this.vecmodelService.announceModel(Model_name);
     console.log(p);
     p.subscribe(res => {this.postData = res;
       console.log(res)});    
   }
 
-  setDB(db_name: string) {
-    let p = this.databaseService.sendDB(db_name);
+  setModel(Model_name: string) {
+    let p = this.vecmodelService.sendModel(Model_name);
     console.log(p);
     p.subscribe(res => {this.postData = res;
       console.log(res)}); 
     }
+
+    retrieveDB() {
+      let p = this.vecmodelService.getDBs();
+      console.log(p);
+      p.subscribe(res => {this.DBnames = res;
+        console.log(res)});
+    }
+
+    setDB(db_name: string) {
+      let p = this.vecmodelService.sendDB(db_name);
+      console.log(p);
+      p.subscribe(res => {this.postData = res;
+        console.log(res)}); 
+      }
 
   getType(val: any): string {
     return val instanceof Date ? 'date' : Array.isArray(val) ? 'array' : typeof val;

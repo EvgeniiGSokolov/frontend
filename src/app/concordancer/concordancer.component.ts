@@ -39,7 +39,6 @@ export class ConcordancerComponent {
     {"short": "ADV", "russ": "наречие"},
     {"short": "SPRO", "russ": "местоимение-существительное"},
     {"short": "APRO", "russ": "местоимение-прилагательное"},
-    {"short": "ADV", "russ": "наречие"},
     {"short": "PR", "russ":"предлог"}
   ];
   cases: {"short": string, "russ": string}[] = [
@@ -135,7 +134,6 @@ export class ConcordancerComponent {
     console.log(p);
     p.subscribe(res => {this.postData = res;
       console.log(res)});
-
   }
 
   getType(val: any): string {
